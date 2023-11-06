@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerBlazorApp", "WaterTrackerBlazorApp\WaterTrackerBlazorApp.csproj", "{9382C8FB-AEC6-49C8-835D-E1B9530C50CB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerAPI", "WaterTrackerAPI\WaterTrackerAPI.csproj", "{E07B1128-D5B4-443C-95F1-F5CDFD1D7CF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterTrackerApp.Models", "WaterTrackerApp.Models\WaterTrackerApp.Models.csproj", "{B73079D3-6BF1-4984-9A2E-A23DA10DABBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerApp.Models", "WaterTrackerApp.Models\WaterTrackerApp.Models.csproj", "{B73079D3-6BF1-4984-9A2E-A23DA10DABBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerAppTests", "WaterTrackerAppTests\WaterTrackerAppTests.csproj", "{A3A65559-EC63-4295-B87D-531FC86DD913}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerBlazorApp", "WaterTrackerBlazorApp\WaterTrackerBlazorApp.csproj", "{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9382C8FB-AEC6-49C8-835D-E1B9530C50CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9382C8FB-AEC6-49C8-835D-E1B9530C50CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9382C8FB-AEC6-49C8-835D-E1B9530C50CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9382C8FB-AEC6-49C8-835D-E1B9530C50CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E07B1128-D5B4-443C-95F1-F5CDFD1D7CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E07B1128-D5B4-443C-95F1-F5CDFD1D7CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E07B1128-D5B4-443C-95F1-F5CDFD1D7CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,14 @@ Global
 		{B73079D3-6BF1-4984-9A2E-A23DA10DABBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B73079D3-6BF1-4984-9A2E-A23DA10DABBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B73079D3-6BF1-4984-9A2E-A23DA10DABBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A65559-EC63-4295-B87D-531FC86DD913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A65559-EC63-4295-B87D-531FC86DD913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A65559-EC63-4295-B87D-531FC86DD913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A65559-EC63-4295-B87D-531FC86DD913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

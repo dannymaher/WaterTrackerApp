@@ -1,0 +1,59 @@
+﻿@page "/UserDetails/{Id:int}"
+@inherits UserDetailsBase
+<div class="card shadow border-0 my-4 pb-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3" >
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">User Details</h2>
+                <button class="btn btn-primary" @onclick=@( () => EditUser() )>Edit</button>
+                <button class="btn btn-primary" @onclick=@( () => DeleteUser(Id) )>Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (User == null && ErrorMessage == null)
+        {
+            <h3>Loading</h3>
+            <LoadingSpinner></LoadingSpinner>
+        }
+        else if (ErrorMessage != null)
+        {
+            <DisplayErrorMessage ErrorMessage="@ErrorMessage"></DisplayErrorMessage>
+        }
+        else
+        {
+            <LoadingSpinner></LoadingSpinner>
+            <p>@User.FirstName</p>
+            <p>@User.LastName</p>
+            <p>@User.Email</p>
+
+            
+        }
+    </div>
+</div>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">User Water Intake Records</h2>
+                <button class="btn btn-primary" @onclick=@( () => AddRecord(Id) )>Add Record</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (User == null && ErrorMessage == null)
+        {
+            <h3>Loading</h3>
+        }
+        else if (ErrorMessage != null)
+        {
+            <DisplayErrorMessage ErrorMessage="@ErrorMessage"></DisplayErrorMessage>
+        }
+        else
+        {
+            
+            <UserWaterIntakeTable UserId="@User.Id"></UserWaterIntakeTable>
+        }
+    </div>
+</div>
+

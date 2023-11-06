@@ -3,14 +3,19 @@ using WaterTrackerAPI.Entities;
 
 namespace WaterTrackerAPI.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext //Class for the Database
     {
+        //Adds tables to DB
         public DbSet<User> Users { get; set; }
         public DbSet<WaterIntake> WaterIntake { get; set; }
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-       
+
+        public ApplicationDbContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

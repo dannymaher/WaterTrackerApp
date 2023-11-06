@@ -1,0 +1,46 @@
+﻿@page "/UpsertUser"
+@page "/UpsertUser/{Id:int}"
+@inherits UpsertUserBase
+
+<EditForm Model = "@User" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    
+    <div class="form-floating row">
+        <div class="col-3 ">
+            <label for="FirstName" class=" col-form-label">First Name</label>
+        </div>
+        
+        <div class="col-9">
+            <InputText id="FirstName" class="form-control" placeholder="First Name"
+                       @bind-Value="User.FirstName" />
+            <ValidationMessage For="@(() => User.FirstName)" />
+        </div>
+    </div>
+    <div class="form-floating row">
+        <div class="col-3 ">
+            <label for="LastName" class=" col-form-label">Last Name</label>
+        </div>
+        
+        <div class="col-9">
+            <InputText id="LastName" class="form-control" placeholder="Last Name"
+                       @bind-Value="User.LastName" />
+            <ValidationMessage For="@(() => User.LastName)" />
+        </div>
+    </div>
+    <div class="form-floating row">
+        <div class="col-3 ">
+            <label for="Email" class=" col-form-label">Email</label>
+        </div>
+        
+        <div class="col-9">
+            <InputText id="Email" class="form-control" placeholder="Email"
+                       @bind-Value="User.Email" />
+            <ValidationMessage For="@(() => User.Email)" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</EditForm>
+
+

@@ -1,0 +1,55 @@
+﻿@page "/"
+@inherits UsersBase
+@if(users == null)
+{
+    <LoadingSpinner></LoadingSpinner>
+}
+else
+{
+    <div class="card shadow border-0 my-4">
+        <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white py-2">All Users</h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 text-end ">
+                    <button class="btn btn-primary text-end" @onclick=@( () => CreateUser() )> Add User</button>
+                </div>
+            </div>
+            
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">email</th>
+                            <th scope="col"></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var user in users)
+                        {
+                            <tr>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                
+                                <td> <button class="btn btn-primary float-end" @onclick=@( () => ViewUserDetails(user.Id) )>Details</button></td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

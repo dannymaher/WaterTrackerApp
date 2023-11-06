@@ -13,8 +13,7 @@ namespace WaterTrackerAPI.Entities
         public DateTime IntakeDate {  get; set; }
 
         [Required]
-        [MinLength(0)]
-        [MaxLength(Int32.MaxValue)]
+        [Range(1,Int32.MaxValue)]
         public int ConsumedWater {  get; set; }
         
         public int UserID {  get; set; }

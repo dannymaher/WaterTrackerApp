@@ -2,12 +2,13 @@
 
 namespace WaterTrackerAPI.Repositories.IRepositories
 {
+    // An interface which declares the methods for the generic repository class and allows for dependency injection
     public interface IGenericRepository<T> where T : class
     {
-        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, IOrderedQueryable<T> orderBy = null, string ? includeProperties = null);
-        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false);
+        Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>>? filter = null, Expression<Func<T, bool>>? orderBy = null, string ? includeProperties = null);
+        Task<T> Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false);
         void Add(T entity);
-        void Remove(T entity);
+        Task<T> Remove(T entity);
         
     }
 }

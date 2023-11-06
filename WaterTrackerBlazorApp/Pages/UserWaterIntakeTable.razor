@@ -1,0 +1,36 @@
+﻿@inherits UserWaterIntakeTableBase
+
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Consumed Water (ml)</th>
+                <th scope="col">Date</th>
+                
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var record in Records)
+            {
+                <tr>
+                    <td>@record.ConsumedWater</td>
+                    <td>@record.IntakeDate</td>
+                    
+                    
+
+                    <td> <button class="btn btn-primary float-end" @onclick=@( () => EditRecordDetails(record.Id) )>Edit</button></td>
+                    <td> <button class="btn btn-danger float-end" @onclick=@( () => DeleteRecord(record.Id) )>Delete</button></td>
+                    
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

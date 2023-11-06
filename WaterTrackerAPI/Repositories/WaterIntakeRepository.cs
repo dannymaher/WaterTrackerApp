@@ -4,6 +4,7 @@ using WaterTrackerAPI.Repositories.IRepositories;
 
 namespace WaterTrackerAPI.Repositories
 {
+    //A class for handling operations specifically for the water intake entity
     public class WaterIntakeRepository : GenericRepository<WaterIntake>, IWaterIntakeRepository
     {
         private ApplicationDbContext _db;
@@ -13,9 +14,22 @@ namespace WaterTrackerAPI.Repositories
             _db = db;
         }
 
-        public void update(WaterIntake entity)
+        //Updates a water intake db record
+        public async Task<WaterIntake> Update(WaterIntake entity, int id)
         {
-            throw new NotImplementedException();
+            var item = await _db.WaterIntake.FindAsync(id);
+            
+            if (item != null)
+            {
+                item.IntakeDate = entity.IntakeDate;
+                item.ConsumedWater = entity.ConsumedWater;
+                
+                _db.WaterIntake.Update(item);
+                
+                return item;
+            }
+            return null;
         }
+        
     }
 }

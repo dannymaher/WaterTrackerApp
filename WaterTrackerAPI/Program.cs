@@ -19,9 +19,15 @@ builder.Services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder =>
     builder.AllowAnyOrigin()
            .AllowAnyMethod()
            .AllowAnyHeader();
-}));
-var app = builder.Build();
 
+}));
+
+var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

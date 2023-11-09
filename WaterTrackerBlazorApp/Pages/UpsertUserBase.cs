@@ -32,13 +32,15 @@ namespace WaterTrackerBlazorApp.Pages
             if(User.Id != 0)
             {
                 result = await UserService.UpdateUser(User,Id);
+                NavigationManager.NavigateTo($"/UserDetails/{User.Id}");
             }
             else
             {
                  result = await UserService.AddUser(User);
+                NavigationManager.NavigateTo("/");
             }
             
-            NavigationManager.NavigateTo("/");
+            //NavigationManager.NavigateTo("/");
         }
     }
 }

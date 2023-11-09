@@ -30,9 +30,9 @@ namespace WaterTrackerAPI.Controllers
 
             try
             {
-                var Users = await _unitOfWork.User.GetAll();
-                var UserDtos = Users.ConvertToUsersDto();
-                return Ok(UserDtos);
+                var users = await _unitOfWork.User.GetAll();
+                var userDtos = users.ConvertToUsersDto();
+                return Ok(userDtos);
             }
             catch (Exception)
             {
@@ -47,14 +47,19 @@ namespace WaterTrackerAPI.Controllers
         {
             try
             {
-                var User = await _unitOfWork.User.Get(x => x.Id == id);
-                var UserDto = User.ConvertToUserDto();
+                var user = await _unitOfWork.User.Get(x => x.Id == id);
                 
-                if (UserDto == null)
+                
+                if (user == null)
                 {
                     return NotFound();
                 }
-                return Ok(UserDto);
+                else
+                {
+                    var userDto = user.ConvertToUserDto();
+                    return Ok(userDto);
+                }
+                
             }
             catch (Exception)
             {
@@ -65,19 +70,19 @@ namespace WaterTrackerAPI.Controllers
         
         //Post request which creates a user entity in the db
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(UserDto UserDto)
+        public async Task<ActionResult<User>> CreateUser(UserDto userDto)
         {
             try
             {
-                if(UserDto == null)
+                if(userDto == null)
                 {
                     return BadRequest();
                 }
-                User NewUser = UserDto.ConvertDtoToUser();
-                _unitOfWork.User.Add(NewUser);
-                _unitOfWork.Save();
+                User newUser = userDto.ConvertDtoToUser();
+                _unitOfWork.User.Add(newUser);
+                await _unitOfWork.Save();
                 return CreatedAtAction(nameof(GetUserById),
-                new { id = NewUser.Id }, NewUser);
+                new { id = newUser.Id }, newUser);
             }
             catch(Exception)
             {
@@ -88,25 +93,25 @@ namespace WaterTrackerAPI.Controllers
 
         //Post request which creates a user entity in the db
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<User>> UpdateUser(UserDto UserDto, int id)
+        public async Task<ActionResult<User>> UpdateUser(UserDto userDto, int id)
         {
             try
             {
-                if (id != UserDto.Id)
+                if (id != userDto.Id)
                 {
                     return BadRequest("User ID mismatch");
                 }
 
 
-                var UserToUpdate = await _unitOfWork.User.Get(x => x.Id == id);
+                var userToUpdate = await _unitOfWork.User.Get(x => x.Id == id);
 
-                if (UserToUpdate == null)
+                if (userToUpdate == null)
                 {
                     return NotFound($"User with Id = {id} not found");
                 }
 
 
-                User user = UserDto.ConvertDtoToUser();
+                User user = userDto.ConvertDtoToUser();
                 await _unitOfWork.User.Update(user,id);
                 await _unitOfWork.Save();
                 return Ok(User);
@@ -127,9 +132,18 @@ namespace WaterTrackerAPI.Controllers
             {
                 
                 User user = await _unitOfWork.User.Get(x => x.Id == id);
-                await _unitOfWork.User.Remove(user);
-                await _unitOfWork.Save();
-                return Ok(User);
+
+                if(user == null)
+                {
+                    return NotFound($"User with Id = {id} not found");
+                }
+                else
+                {
+                    await _unitOfWork.User.Remove(user);
+                    await _unitOfWork.Save();
+                    return Ok(User);
+                }
+               
             }
             catch(Exception e)
             {

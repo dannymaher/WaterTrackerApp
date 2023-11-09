@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerApp.Models", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerAppTests", "WaterTrackerAppTests\WaterTrackerAppTests.csproj", "{A3A65559-EC63-4295-B87D-531FC86DD913}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerBlazorApp", "WaterTrackerBlazorApp\WaterTrackerBlazorApp.csproj", "{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterTrackerBlazorApp", "WaterTrackerBlazorApp\WaterTrackerBlazorApp.csproj", "{FB25E93A-E56F-472C-96DB-67B00B8351D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{A3A65559-EC63-4295-B87D-531FC86DD913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3A65559-EC63-4295-B87D-531FC86DD913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3A65559-EC63-4295-B87D-531FC86DD913}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7E8E6BB-6B5A-4259-B6A8-89D7BB8BD192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB25E93A-E56F-472C-96DB-67B00B8351D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB25E93A-E56F-472C-96DB-67B00B8351D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB25E93A-E56F-472C-96DB-67B00B8351D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB25E93A-E56F-472C-96DB-67B00B8351D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

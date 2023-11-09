@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WaterTrackerAPI.Entities;
 using WaterTrackerAPI.Extensions;
 using WaterTrackerAPI.Repositories.IRepositories;
@@ -20,7 +21,7 @@ namespace WaterTrackerAPI.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        //Get request which returns all Water based on the record id
+        //Get request which returns  Water based on the record id
         [HttpGet("getById/{id:int}")]    
         public async Task<ActionResult<WaterIntakeDto>> GetWaterIntake(int id)
         {
@@ -29,8 +30,17 @@ namespace WaterTrackerAPI.Controllers
             try
             {
                 var record = await _unitOfWork.WaterIntake.Get(x=> x.Id==id,includeProperties: "User");
-                var recordDtos = record.ConvertToWaterIntakeDto();
-                return Ok(recordDtos);
+
+                if(record == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var recordDtos = record.ConvertToWaterIntakeDto();
+                    return Ok(recordDtos);
+                }
+                
             }
             catch (Exception)
             {
@@ -40,7 +50,7 @@ namespace WaterTrackerAPI.Controllers
 
 
         }
-        //Get request which returns ass Water Intake records
+        //Get request which returns all Water Intake records
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WaterIntakeDto>>> GetAllWaterIntake()
         {
@@ -49,8 +59,16 @@ namespace WaterTrackerAPI.Controllers
             try
             {
                 var records = await _unitOfWork.WaterIntake.GetAll(includeProperties:"User");
-                var recordDtos = records.ConvertToWaterIntakesDto();
-                return Ok(recordDtos);
+                if(records == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var recordDtos = records.ConvertToWaterIntakesDto();
+                    return Ok(recordDtos);
+                }
+                
             }
             catch (Exception)
             {
@@ -69,8 +87,16 @@ namespace WaterTrackerAPI.Controllers
             try
             {
                 var records = await _unitOfWork.WaterIntake.GetAll(x => x.UserID == id ,includeProperties: "User");
-                var recordDtos = records.ConvertToWaterIntakesDto();
-                return Ok(recordDtos);
+                if(records == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    var recordDtos = records.ConvertToWaterIntakesDto();
+                    return Ok(recordDtos);
+                }
+                
             }
             catch (Exception)
             {
@@ -103,25 +129,25 @@ namespace WaterTrackerAPI.Controllers
 
         //Put request which updates a water intake record for a specific user 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<WaterIntakeDto>> UpdateRecord(WaterIntakeDto RecordDto, int id)
+        public async Task<ActionResult<WaterIntakeDto>> UpdateRecord(WaterIntakeDto recordDto, int id)
         {
             try
             {
-                if (id != RecordDto.Id)
+                if (id != recordDto.Id)
                 {
                     return BadRequest("Record ID mismatch");
                 }
 
 
-                var RecordToUpdate = await _unitOfWork.WaterIntake.Get(x => x.Id == id);
+                var recordToUpdate = await _unitOfWork.WaterIntake.Get(x => x.Id == id);
 
-                if (RecordToUpdate == null)
+                if (recordToUpdate == null)
                 {
                     return NotFound($"Record with Id = {id} not found");
                 }
 
 
-                WaterIntake record = RecordDto.ConvertDtoToWaterIntake();
+                WaterIntake record = recordDto.ConvertDtoToWaterIntake();
                 await _unitOfWork.WaterIntake.Update(record, id);
                 await _unitOfWork.Save();
                 return Ok(record);
@@ -141,10 +167,18 @@ namespace WaterTrackerAPI.Controllers
             try
             {
 
-                WaterIntake user = await _unitOfWork.WaterIntake.Get(x => x.Id == id);
-                await _unitOfWork.WaterIntake.Remove(user);
-                await _unitOfWork.Save();
-                return Ok(User);
+                WaterIntake waterIntake = await _unitOfWork.WaterIntake.Get(x => x.Id == id);
+                if (waterIntake == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    await _unitOfWork.WaterIntake.Remove(waterIntake);
+                    await _unitOfWork.Save();
+                    return Ok(User);
+                }
+                
             }
             catch (Exception e)
             {

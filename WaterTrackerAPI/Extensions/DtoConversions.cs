@@ -10,15 +10,14 @@ namespace WaterTrackerAPI.Extensions
         //converts a list of users to a list of user dtos
         public static IEnumerable<UserDto> ConvertToUsersDto(this IEnumerable<User> users)
         {
-            List<UserDto> result = users.Select(x => new UserDto
+            
+            List<UserDto> usersDtos = new List<UserDto>();
+            foreach (var user in users)
             {
-                Id = x.Id,
-                Email = x.Email,
-                FirstName = x.FirstName,
-                LastName = x.LastName
-
-            }).ToList();
-            return result;
+                usersDtos.Add(ConvertToUserDto(user));
+            };
+            
+            return usersDtos;
         }
         //converts a user to a user dto
         public static UserDto ConvertToUserDto(this User user)
@@ -49,15 +48,12 @@ namespace WaterTrackerAPI.Extensions
        //converts a list of Water intake record to a list of water intake dto
         public static IEnumerable<WaterIntakeDto> ConvertToWaterIntakesDto(this IEnumerable<WaterIntake> records)
         {
-            List<WaterIntakeDto> result = records.Select(x => new WaterIntakeDto
+            
+            List<WaterIntakeDto> result = new List<WaterIntakeDto>();
+            foreach (var record in records)
             {
-                Id = x.Id,
-                ConsumedWater = x.ConsumedWater,
-                IntakeDate = x.IntakeDate,
-                UserID = x.User.Id,
-                UserName = x.User.FirstName + " " + x.User.LastName
-
-            }).ToList();
+                result.Add(ConvertToWaterIntakeDto(record));
+            }
             return result;
         }
         //converts a Water intake record to a water intake dto

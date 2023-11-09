@@ -35,6 +35,7 @@ namespace WaterTrackerBlazorApp.Pages
 
                     Record.UserID = UserId;
                     Record.UserName = user.FirstName + " " + user.LastName;
+                    Record.IntakeDate = DateTime.Now;
                 }
             }catch (Exception ex) { }
             

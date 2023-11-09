@@ -1,6 +1,6 @@
 ﻿@page "/UserDetails/{Id:int}"
 @inherits UserDetailsBase
-<div class="card shadow border-0 my-4 pb-4">
+<div class="card shadow border-0 my-4 pb-2">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3" >
         <div class="row">
             <div class="col-12 text-center">
@@ -10,10 +10,10 @@
             </div>
         </div>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-2">
         @if (User == null && ErrorMessage == null)
         {
-            <h3>Loading</h3>
+            
             <LoadingSpinner></LoadingSpinner>
         }
         else if (ErrorMessage != null)
@@ -22,10 +22,10 @@
         }
         else
         {
-            <LoadingSpinner></LoadingSpinner>
-            <p>@User.FirstName</p>
-            <p>@User.LastName</p>
-            <p>@User.Email</p>
+            
+            <p>First Name: @User.FirstName</p>
+            <p>Last Name: @User.LastName</p>
+            <p>Email : @User.Email</p>
 
             
         }
@@ -43,7 +43,7 @@
     <div class="card-body p-4">
         @if (User == null && ErrorMessage == null)
         {
-            <h3>Loading</h3>
+            <LoadingSpinner></LoadingSpinner>
         }
         else if (ErrorMessage != null)
         {

@@ -2,35 +2,57 @@
 @page "/WaterRecordUpsert/{Id:int}"
 @page "/WaterRecordUpsert/{Id:int}/{UserId:int}"
 @inherits WaterRecordUpsertBase
-<EditForm Model="@Record" OnValidSubmit="HandleSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
 
-    <div class="form-floating row">
-        <div class="col-3 ">
-            <label for="ConsumedWater" class=" col-form-label">Consumed Water</label>
-        </div>
-
-        <div class="col-9">
-            <InputNumber id="ConsumedWater" class="form-control" 
-                       @bind-Value="@Record.ConsumedWater" />
-            <ValidationMessage For="@(() => Record.ConsumedWater)" />
-        </div>
-    </div>
-    <div class="form-floating row">
-        <div class="col-3 ">
-            <label for="IntakeDate" class=" col-form-label">Last Name</label>
-        </div>
-
-        <div class="col-9">
-            <InputDate id="IntakeDate" class="form-control"
-                       @bind-Value="@Record.IntakeDate" />
-            <ValidationMessage For="@(() => Record.IntakeDate)" />
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                @if(Id == 0){
+                    <h2 class="text-white py-2">Add Water Intake Records</h2>
+                }
+                else{
+                <h2 class="text-white py-2">Edit Water Intake Records</h2>
+                }
+                
+                
+                
+            </div>
         </div>
     </div>
-    
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <div class="card-body p-4">
+        <EditForm Model="@Record" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-</EditForm>
+            <div class="form-floating row">
+                <div class="col-3 ">
+                    <label for="ConsumedWater" class=" col-form-label">Consumed Water</label>
+                </div>
+
+                <div class="col-9">
+                    <InputNumber id="ConsumedWater" class="form-control"
+                                 @bind-Value="@Record.ConsumedWater" />
+                    <ValidationMessage For="@(() => Record.ConsumedWater)" />
+                </div>
+            </div>
+            <div class="form-floating row">
+                <div class="col-3 ">
+                    <label for="IntakeDate" class=" col-form-label">Date</label>
+                </div>
+
+                <div class="col-9">
+                    <InputDate id="IntakeDate" class="form-control"
+                               @bind-Value="@Record.IntakeDate" />
+                    <ValidationMessage For="@(() => Record.IntakeDate)" />
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+
+        </EditForm>
+    </div>
+</div>
+
+
 
 

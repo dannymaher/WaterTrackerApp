@@ -2,14 +2,14 @@
 
 
 <div class="row">
-    <table class="table table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th scope="col">Consumed Water (ml)</th>
                 <th scope="col">Date</th>
                 
                 <th scope="col"></th>
-                <th scope="col"></th>
+                
 
             </tr>
         </thead>
@@ -23,8 +23,11 @@
                     
                     
 
-                    <td> <button class="btn btn-primary float-end" @onclick=@( () => EditRecordDetails(record.Id) )>Edit</button></td>
-                    <td> <button class="btn btn-danger float-end" @onclick=@( () => DeleteRecord(record.Id) )>Delete</button></td>
+                    
+                    <td> 
+                        <button class="btn btn-danger float-end ms-3" @onclick=@( () => DeleteRecord(record.Id) )>Delete</button>
+                        <button class="btn btn-primary float-end ms-3" @onclick=@( () => EditRecordDetails(record.Id) )>Edit</button>
+                    </td>
                     
 
                 </tr>
